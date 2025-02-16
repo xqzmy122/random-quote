@@ -1,6 +1,15 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0F2A1D;
+}
+
+li {
+  list-style: none;
 }
 
 .quote-conteiner { 
@@ -15,35 +24,45 @@
 .generate-quote {
   border-radius: 15px;
   border: none;
-  background-color: rgb(114, 93, 170);
+  background-color: #375534;
   padding: 10px 15px;
   color: aliceblue;
-  font-size: 1em;
+  font-size: 1.2em;
   margin-bottom: 5px;
+  transition: 0.2s;
 }
 
 .add-to-favorites {
   border-radius: 15px;
   border: none;
-  background-color: rgb(245, 245, 57);
-  padding: 8px 10px;
-  color: rgb(0, 0, 0);
-  font-size: 0.8em;
+  background-color: #0F2A1D;
+
+  color: aliceblue;
+  font-size: 1em;
+  transition: 0.2s;
+  font-size: 2em;
+}
+
+.add-to-favorites:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .generate-quote:hover {
-  background-color: rgb(139, 114, 208);
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .quote-text {
   padding-bottom: 5px;
   font-size: 1.5em;
   font-style: italic;
+  color: #E3EED4;
 }
 
 .quote-author {
   padding-bottom: 15px;
+  color: #E3EED4;
 }
 
 .quote-text::after,
@@ -60,13 +79,31 @@
 }
 
 .favorite-item {
-  background-color: rgb(82, 82, 82);
+  background-color: #0F2A1D;
   margin: 10px 0;
   color: aliceblue;
   max-width: 500px;
   border-radius: 15px;
+  color: #E3EED4;
 }
 
 .favorite-quote {
   font-style: italic;
+}
+
+.favorite-item__remove-btn {
+  background-color: #375534;
+
+}
+
+.favorite-item__remove-btn:hover {
+  cursor: pointer;
+}
+
+.favorite-item__remove-btn {
+  border: none;
+  width: 30px;
+  color: rgb(150, 4, 4);
+  font-weight: 900;
+  font-size: larger;
 }
