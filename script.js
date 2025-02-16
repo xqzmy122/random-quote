@@ -1,52 +1,12 @@
-const quotes = [
-  { 
-    quote: "Будьте изменением, которое хотите видеть в мире.",
-    author: "Махатма Ганди"
-   },
-  { 
-    quote: "Жизнь — это то, что с тобой происходит, пока ты строишь другие планы.",
-    author: "Джон Леннон" 
-  },
-  { 
-    quote: "Только две вещи бесконечны: вселенная и человеческая глупость, хотя насчет первой я не уверен.", 
-    author: "Альберт Эйнштейн" 
-  },
-  { 
-    quote: "Наше величайшее заблуждение — это страх перед неудачами.", 
-    author: "Наполеон Бонапарт" 
-  },
-  { 
-    quote: "Если хочешь иметь то, что никогда не имел, придется делать то, что никогда не делал.", 
-    author: "Томас Джефферсон" 
-  },
-  { 
-    quote: "Критика — это не то, что заставляет нас двигаться вперед, а вдохновение.", 
-    author: "Уинстон Черчилль" 
-  },
-  { 
-    quote: "Счастье — это не нечто готовое. Оно исходит из твоих собственных действий.", 
-    author: "Далай-лама" 
-  },
-  { 
-    quote: "Я не терпел поражений. Я просто нашел 10 000 способов, которые не работают.", 
-    author: "Томас Эдисон" 
-  },
-  { 
-    quote: "Учись вчера, живи сегодня, надейся на завтра.", 
-    author: "Альберт Эйнштейн" 
-  },
-  { 
-    quote: "Не тот велик, кто никогда не падал, а тот велик — кто падал и вставал.", 
-    author: "Конфуций" 
-  }
-];
+import quotes from './quotes.js'
 
-console.log(quotes);
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 
-const actionBtn = document.querySelector('.quote-btn')
+const actionBtn = document.querySelector('.generate-quote')
 const quoteText = document.querySelector('.quote-text')
 const quoteAuthor = document.querySelector('.quote-author')
+const addToFavoritesButton = document.querySelector('.add-to-favorites')
 
 function getRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length)
@@ -55,5 +15,43 @@ function getRandomQuote() {
   quoteAuthor.textContent = author
 }
 
+function addQuoteToFavorites() {
+  const currentQuoteText = quoteText.textContent
+  const currentAuthor = quoteAuthor.textContent
+  const newFavoriteQuote = {quote: currentQuoteText, author: currentAuthor}
+  
+  if (!favorites.some(obj => obj.quote === newFavoriteQuote.quote && obj.author === newFavoriteQuote.author)) {
+    favorites.push(newFavoriteQuote);
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  updateUI()
+}
+}
+
+function updateUI () {
+  const favoritesList = document.querySelector('.favorites-list')
+  favoritesList.innerHTML = "";
+
+  favorites.forEach((element, index) => {
+    const li = document.createElement('li')
+    li.classList.add('favorite-item')
+
+    const quoteText = document.createElement('p')
+    quoteText.classList.add('favorite-quote')
+    quoteText.textContent = `"${element.quote}"`
+    
+    const quoteAuthor = document.createElement('p')
+    quoteAuthor.classList.add('favorite-author')
+    quoteAuthor.textContent = `"${element.author}"`
+
+
+    li.appendChild(quoteText)
+    li.appendChild(quoteAuthor)
+
+    favoritesList.appendChild(li)
+  })
+}
+
 actionBtn.addEventListener('click', getRandomQuote)
+addToFavoritesButton.addEventListener('click', addQuoteToFavorites)
 
