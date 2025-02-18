@@ -4,8 +4,20 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: white;
+  --text-color: black;
+}
+
+.dark-theme {
+  --bg-color: #0F2A1D;
+  --text-color: #E3EED4;
+}
+
 body {
-  background-color: #0F2A1D;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: 0.4s;
 }
 
 li {
@@ -35,9 +47,9 @@ li {
 .add-to-favorites {
   border-radius: 15px;
   border: none;
-  background-color: #0F2A1D;
+  background-color: transparent;
 
-  color: aliceblue;
+  color: inherit;
   font-size: 1em;
   transition: 0.2s;
   font-size: 2em;
@@ -57,12 +69,12 @@ li {
   padding-bottom: 5px;
   font-size: 1.5em;
   font-style: italic;
-  color: #E3EED4;
+  color: inherit;
 }
 
 .quote-author {
   padding-bottom: 15px;
-  color: #E3EED4;
+  color: inherit;
 }
 
 .quote-text::after,
@@ -79,21 +91,19 @@ li {
 }
 
 .favorite-item {
-  background-color: #0F2A1D;
+  background-color: transparent;
   margin: 10px 0;
-  color: aliceblue;
   max-width: 500px;
   border-radius: 15px;
-  color: #E3EED4;
 }
 
 .favorite-quote {
   font-style: italic;
+  color: inherit;
 }
 
 .favorite-item__remove-btn {
-  background-color: #375534;
-
+  background-color: transparent;
 }
 
 .favorite-item__remove-btn:hover {
@@ -106,4 +116,44 @@ li {
   color: rgb(150, 4, 4);
   font-weight: 900;
   font-size: larger;
+}
+
+.theme-toggle {
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.theme-toggle:hover {
+  cursor: pointer;
+}
+
+.progress-conteiner {
+  max-width: 30%;
+  background-color: #375534;
+  margin: 0 auto;
+  border-radius: 15px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #E3EED4;
+  transition: 0.3s;
+}
+
+.quote-counter {
+  text-align: center;
+}
+
+.progress-bar-description {
+  text-align: center;
+  font-size: 1.2em;
 }
